@@ -7,8 +7,8 @@
 class Terminal: 
     def __init__(self,number:str):
         self.number = number 
-        self.time_receive = 0 
-        self.time_made = 0 
+        self.time_receive = 'Inicio'
+        self.time_made = 'Inicio' 
         self.total_time = 0 
 
     #Number
@@ -37,7 +37,10 @@ class Terminal:
 
     @time_made.setter
     def time_made(self,call_time):
-        self.__time_made = call_time 
+        if call_time == 'Inicio':
+            self.__time_made = 0
+        else:
+            self.__time_made += call_time 
 
     #Time_receive
     @property 
@@ -46,7 +49,11 @@ class Terminal:
     
     @time_receive.setter 
     def time_receive(self,call_time):
-        self.__time_receive= call_time
+        if call_time == 'Inicio':
+            self.time_receive = 0 
+        else:
+            self.time_receive += call_time
+        
 
 
 
@@ -64,23 +71,10 @@ class Terminal:
 
     
     def __str__ (self):
-        return (f'{self.number} - Conversation time: {}')
+        return (f'{self.number} - Conversation time: {self.total_time}')
 
 
 
 
-#TEST
 
-t1 = Terminal("666112233")
-t2 = Terminal("666744459")
-t3 = Terminal("632128919")
-t4 = Terminal("664135818")
-print(t1)
-print(t2)
-t1.call(t2, 420)
-t1.call(t3, 210)
-print(t1)
-print(t2)
-print(t3)
-print(t4)
     
