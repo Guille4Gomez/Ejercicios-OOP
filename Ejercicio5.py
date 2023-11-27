@@ -7,7 +7,7 @@
 class Terminal: 
     def __init__(self,number:str):
         self.number = number 
-        self.time_receive = 'Inicio'
+        self.time_received = 'Inicio'
         self.time_made = 'Inicio' 
         self.total_time = 0 
 
@@ -15,7 +15,7 @@ class Terminal:
 
     @property
     def number (self):
-        return self.number 
+        return self.__number 
 
     @number.setter
     def number(self,value):
@@ -33,7 +33,7 @@ class Terminal:
     #Time_made
     @property
     def time_made(self):
-        return self.time_made
+        return self.__time_made
 
     @time_made.setter
     def time_made(self,call_time):
@@ -41,33 +41,38 @@ class Terminal:
             self.__time_made = 0
         else:
             self.__time_made += call_time 
+            self.__total_time += call_time
+            
 
     #Time_receive
     @property 
-    def time_receive(self):
-        return self.time_receive
+    def time_received(self):
+        return self.__time_received
     
-    @time_receive.setter 
-    def time_receive(self,call_time):
+    @time_received.setter 
+    def time_received(self,call_time):
         if call_time == 'Inicio':
-            self.time_receive = 0 
+            self.__time_received = 0 
         else:
-            self.time_receive += call_time
+            self.__time_received += call_time
+            self.__total_time += call_time
         
 
 
 
     #Total_time
+ 
     @property
-
     def total_time(self):
-        return self.time_made + self.time_receive
+        return self.__total_time
     
-        
-
+    @total_time.setter
+    def total_time(self,call_time):
+        self.__total_time = call_time
+          
     def call (self,terminal,call_time):
-        self.time_made= self.time_made + call_time 
-        terminal.time_receive = terminal.time_receive + call_time 
+        self.time_made = call_time 
+        terminal.time_received =  call_time 
 
     
     def __str__ (self):
